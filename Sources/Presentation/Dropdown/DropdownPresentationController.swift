@@ -56,10 +56,7 @@ class DropdownPresentationController: UIPresentationController {
     
     override var frameOfPresentedViewInContainerView: CGRect {
         guard let containerView = containerView else { return .zero }
-        
-        let size = self.size(forChildContentContainer: presentedViewController,
-                          withParentContainerSize: containerView.bounds.size)
-        
+                
         let position: CGPoint
         if let navigationBar = (presentingViewController as? UINavigationController)?.navigationBar {
             // We can't use the frame directly since iOS 13 new modal presentation style
@@ -71,6 +68,8 @@ class DropdownPresentationController: UIPresentationController {
         } else {
             position = .zero
         }
+        
+        let size = CGSize(width: containerView.bounds.width, height: containerView.bounds.size.height - position.y)
         
         return CGRect(origin: position, size: size)
     }
