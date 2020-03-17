@@ -114,9 +114,9 @@ public class Settings {
 
             public lazy var options: PHFetchOptions = {
                 let fetchOptions = PHFetchOptions()
-                fetchOptions.sortDescriptors = [
-                    NSSortDescriptor(key: "creationDate", ascending: false)
-                ]
+//                fetchOptions.sortDescriptors = [
+//                    NSSortDescriptor(key: "creationDate", ascending: false)
+//                ]
 
                 let rawMediaTypes = supportedMediaTypes.map { $0.assetMediaType.rawValue }
                 let predicate = NSPredicate(format: "mediaType IN %@", rawMediaTypes)
