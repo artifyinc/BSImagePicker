@@ -122,7 +122,7 @@ class AssetsViewController: UIViewController {
         let location = sender.location(in: collectionView)
         guard let indexPath = collectionView.indexPathForItem(at: location) else { return }
         guard let cell = collectionView.cellForItem(at: indexPath) as? AssetCollectionViewCell else { return }
-        let asset = fetchResult.object(at: indexPath.row)
+        let asset = fetchResult.object(at: fetchResult.count - 1 - indexPath.row)
 
         delegate?.assetsViewController(self, didLongPressCell: cell, displayingAsset: asset)
     }
@@ -144,13 +144,13 @@ class AssetsViewController: UIViewController {
 extension AssetsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectionFeedback.selectionChanged()
-        let asset = fetchResult.object(at: indexPath.row)
+        let asset = fetchResult.object(at: fetchResult.count - 1 - indexPath.row)
         delegate?.assetsViewController(self, didSelectAsset: asset)
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         selectionFeedback.selectionChanged()
-        let asset = fetchResult.object(at: indexPath.row)
+        let asset = fetchResult.object(at: fetchResult.count - 1 - indexPath.row)
         delegate?.assetsViewController(self, didDeselectAsset: asset)
     }
 
