@@ -54,7 +54,7 @@ class AssetsCollectionViewDataSource : NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = fetchResult[indexPath.row]
+        let asset = fetchResult[fetchResult.count - 1 - indexPath.row]
         let animationsWasEnabled = UIView.areAnimationsEnabled
         let cell: AssetCollectionViewCell
         
@@ -108,7 +108,7 @@ extension AssetsCollectionViewDataSource: UICollectionViewDataSourcePrefetching 
         // Touching asset should trigger prefetching
         // And prefetch image for that asset
         indexPaths.forEach {
-            let asset = fetchResult[$0.row]
+            let asset = fetchResult[fetchResult.count - 1 - $0.row]
             loadImage(for: asset, in: nil)
         }
     }
